@@ -26,8 +26,8 @@ function start(){
   if(config.checkForUpdates)
     updateNotifier({pkg}).notify();
   api.auth(config.screeps.username,config.screeps.password).then((res)=>{
-    console.log('Authenticated')
-    console.log('Using stats method',config.screeps.method)
+   // console.log('Authenticated')
+   // console.log('Using stats method',config.screeps.method)
     if(config.screeps.method == 'console')
       beginConsoleStats()
     else
@@ -103,7 +103,7 @@ function addLeaderboardData(stats){
  
 function tick(){
   Promise.resolve()
-    .then(()=>console.log('Fetching Stats'))
+    //.then(()=>console.log('Fetching Stats'))
     .then(getStats)
     .then(processStats)
     .catch(err=>console.error(err))
@@ -129,7 +129,7 @@ function pushStats(data){
   let {type,stats} = data
   if(!stats) return console.log('No stats found, is Memory.stats defined?')
   if(config.showRawStats) console.log('Stats:',JSON.stringify(stats,null,3))
-  console.log('Pushing stats')
+ // console.log('Pushing stats')
   let sconfig = config.service
   if(type == 'application/json') stats = JSON.stringify(stats)
   request({
@@ -150,7 +150,7 @@ function pushStats(data){
       console.log(`stats limit: 10mb (As of Mar 28, 2017) (If you hit this limit, you are probably doing something wrong)`)
       console.error(`It appears your stats data is too large, please check to make sure you are not submitting unneeded stats, such as old rooms. \n If you legitimately need to submit stats this large, contact ags131 on slack for a limit bump`)
     }
-    console.log('Result:',data)
+    //console.log('Result:',data)
     if(err) console.error(err)
   })
 }
@@ -207,7 +207,7 @@ function loadConfig(){
     try{
       // console.log('Try',file)
       let config = require(file)
-      console.log(file)
+     // console.log(file)
       return { config, file }
     }catch(e){}
   }
