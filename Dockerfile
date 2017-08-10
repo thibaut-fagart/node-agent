@@ -6,4 +6,5 @@ ENV DOCKER true
 ADD package.json /app
 RUN yarn install
 ADD app.js .
+ADD config.js /app/config.js
 CMD ["yarn","start"]
